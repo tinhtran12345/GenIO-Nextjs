@@ -1,0 +1,20 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "meta_title": "GenIO | Một ứng dụng Saas",
+  "meta_description": "Ứng dụng GenIO được tích hợp nhiều tính năng như TypeScript, Tailwind CSS, Next-auth, Eslint, các công cụ kiểm tra, v.v. Khởi động dự án của bạn một cách hiệu quả và phong cách.",
+  "meta_keyword_nextjs": "Next.js",
+  "meta_keyword_react": "React",
+  "meta_keyword_nextjs_starter": "Next.js bắt đầu",
+  "meta_keyword_nextjs_boilerplate": "Next.js boilerplate",
+  "meta_keyword_starter_template": "Starter Template",
+  "meta_keyword_tailwindcss": "Tailwind CSS",
+  "meta_keyword_typescript": "TypeScript",
+  "meta_keyword_shadcn_ui": "Shadcn/ui",
+  "meta_keyword_next_auth": "Next-auth",
+  "meta_keyword_prisma": "Prisma",
+  "test_message": "Xin chào rất vui được gặp bạn!",
+  "theme_toggle_label": "Đổi màu",
+
+  "login_path": "/dang-nhap",
+  "register_path": "/dang-ki"
+}
