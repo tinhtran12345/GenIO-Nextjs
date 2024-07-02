@@ -16,5 +16,24 @@
   "theme_toggle_label": "Đổi màu",
 
   "login_path": "/dang-nhap",
-  "register_path": "/dang-ki"
+  "register_path": "/dang-ki",
+  "welcome_message_login": "Chào Mứng Bạn Đến Với GenIO",
+  "password": "Mật khẩu",
+  "username": "Tên người dùng",
+  "login": "Đăng nhập",
+  "register": "Đăng kí",
+  "logout": "Đăng xuất",
+
+  "error_auth_title": "Đã xảy ra vấn đề!",
+  "error_auth_description": "Yêu cầu đăng nhập của bạn không thành công. Vui lòng thử lại",
+  "error_register_description": "Yêu cầu đăng kí của bạn không thành công. Vui lòng thử lại",
+
+  "get_started_with_genio": "Bắt đầu với GenIO",
+  "already_have_account": "Bạn có sẵn một tai khoản",
+
+  "missing_email_password": "Thiếu email hoặc mật khẩu",
+  "invalid_email_password": "Email và mật khẩu không đúng",
+  "invalid_token": "Token không hợp lệ",
+  "user_exists": "Tài khoản của bạn đã tồn tại",
+  "successfully": "thành công"
 }

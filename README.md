@@ -118,3 +118,11 @@ The following scripts are available in the `package.json`:
 - `e2e:ui`: Run end-to-end tests with UI
 - `postbuild`: Generate sitemap
 - `prepare`: Install Husky for managing Git hooks
+
+## Design DB
+
+- Link design
+
+```
+https://dbdiagram.io/d/genio_db-6680fb879939893daea05c91
+```

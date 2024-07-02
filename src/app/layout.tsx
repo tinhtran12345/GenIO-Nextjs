@@ -9,20 +9,18 @@ import { ThemeSwitcher } from '@/components/theme-switcher';
 import { ThemeProvider } from 'next-themes';
 import { Footer } from '@/components/footer';
 import { Toaster } from '@/components/ui/toaster';
+import { LanguageSwitcher } from '@/components/language-switcher';
 
 export const generateMetadata = (): Metadata => ({
   metadataBase: new URL(siteConfig.url()),
-  title: {
-    default: siteConfig.title(),
-    template: `%s | ${siteConfig.title()}`,
-  },
+  title: siteConfig.title(),
   description: siteConfig.description(),
   keywords: siteConfig.keywords(),
   robots: { index: true, follow: true },
   icons: {
-    icon: '/favicon/logo.png',
-    shortcut: '/favicon/logo.png',
-    apple: '/favicon/logo.png',
+    icon: '/favicon/genio_icon.png',
+    shortcut: '/favicon/genio_icon.png',
+    apple: '/favicon/genio_icon.png',
   },
   verification: {
     google: siteConfig.googleSiteVerificationId(),
@@ -57,8 +55,11 @@ export default function RootLayout({
             <Toaster />
 
             {children}
-            <ThemeSwitcher className="absolute bottom-5 right-5 z-10" />
-            <Footer />
+            <div className="absolute bottom-5 right-5 z-10 flex items-center gap-2 flex-col">
+              <ThemeSwitcher />
+              <LanguageSwitcher />
+            </div>
+            {/* <Footer /> */}
           </ThemeProvider>
         </body>
       </html>
