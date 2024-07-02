@@ -2,9 +2,9 @@ import AuthForm from '@/components/auth-form';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import React from 'react';
-
+import * as m from '@/paraglide/messages';
 export const metadata: Metadata = {
-  title: 'GenIO | Login',
+  title: `GenIO | Login`,
   description: 'Login to your account',
 };
 
@@ -16,12 +16,12 @@ const LoginPage = () => {
           <Image
             className="mx-auto"
             src="/favicon/genio_logo.png"
-            width={280}
+            width={250}
             height={57}
             alt="Organize Simple Logo"
           />
           <h1 className="text-2xl mt-8 font-semibold tracking-tight">
-            Welcome GenIO
+            {m.welcome_message_login()}
           </h1>
         </div>
         <AuthForm />

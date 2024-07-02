@@ -1,29 +1,38 @@
 import CredentialsProvider from 'next-auth/providers/credentials';
-
-import { NextAuthOptions } from 'next-auth';
+import NextAuth, { type NextAuthOptions } from 'next-auth';
 import prisma from '@/lib/prisma';
 import bcrypt from 'bcrypt';
-import NextAuth from 'next-auth/next';
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import * as m from '@/paraglide/messages';
 export const authOptions: NextAuthOptions = {
+  adapter: PrismaAdapter(prisma as any),
+  session: {
+    strategy: 'jwt',
+  },
+  pages: {
+    signIn: '/login',
+  },
   providers: [
     CredentialsProvider({
       credentials: {
-        email: { label: 'email', type: 'email' },
+        email: { label: 'Email', type: 'email' },
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
         const { email, password } = credentials ?? {};
+
         if (!email || !password) {
-          throw new Error('Missing email or password');
+          throw new Error(m.missing_email_password());
         }
         const user = await prisma.user.findUnique({
           where: {
-            email,
+            email: email,
           },
         });
+
         // if user doesn't exist or password doesn't match
         if (!user || !(await bcrypt.compare(password, user.password))) {
-          throw new Error('Invalid email or password');
+          throw new Error(m.invalid_email_password());
         }
         return user;
       },
@@ -40,7 +49,7 @@ export const authOptions: NextAuthOptions = {
         token.name = dbUser?.username;
         return token;
       }
-      throw new Error('Invalid token');
+      throw new Error(m.invalid_token());
     },
 
     async session({ session, token }) {

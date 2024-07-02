@@ -16,5 +16,23 @@
   "theme_toggle_label": "theme toggle",
 
   "login_path": "/login",
-  "register_path": "/register"
+  "register_path": "/register",
+  "welcome_message_login": "Welcome GenIO",
+  "username": "Username",
+  "password": "Password",
+  "login": "Login",
+  "register": "Register",
+  "logout": "Sign out",
+  "error_auth_title": "Something went wrong!",
+  "error_auth_description": "Your sign in request failed. Please try again",
+  "error_register_description": "Your sign up request failed. Please try again",
+
+  "get_started_with_genio": "Get started with GenIO",
+  "already_have_account": "Already have an account",
+
+  "missing_email_password": "Missing email or password",
+  "invalid_email_password": "Invalid email or password",
+  "invalid_token": "Invalid token",
+  "user_exists": "User already exists",
+  "successfully": "successfully"
 }

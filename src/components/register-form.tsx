@@ -1,64 +1,47 @@
 'use client';
-import { authSchema } from '@/lib/validations/auth';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import * as z from 'zod';
-import { Icons } from './icons';
+
 import { cn } from '@/lib/utils';
-import { signIn } from 'next-auth/react';
-import { buttonVariants } from './ui/button';
-import { toast } from './ui/use-toast';
+import { Icons } from './icons';
+import * as m from '@/paraglide/messages';
 import { Label } from './ui/label';
 import { Input } from './ui/input';
-import * as m from '@/paraglide/messages';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { buttonVariants } from './ui/button';
 import Link from 'next/link';
+import { registerSchema } from '@/lib/validations/auth';
+import * as z from 'zod';
+import { useRouter } from 'next/navigation';
+import { Signup } from '@/lib/client-request';
+import { toast } from './ui/use-toast';
 
-interface AuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
-
-type FormData = z.infer<typeof authSchema>;
-
-const AuthForm = ({ className, ...props }: AuthFormProps) => {
+type FormData = z.infer<typeof registerSchema>;
+interface RegisterFormProps extends React.HTMLAttributes<HTMLDivElement> {}
+const RegisterForm = ({ className, ...props }: RegisterFormProps) => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
-    resolver: zodResolver(authSchema),
+    resolver: zodResolver(registerSchema),
   });
-
-  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   async function onSubmit(data: FormData) {
     setIsLoading(true);
-
     try {
-      const res = await signIn('credentials', {
-        email: data.email,
-        password: data.password,
-        redirect: false,
-      });
-
-      if (res?.error) {
-        return toast({
-          title: `${m.error_auth_title()}`,
-          description: `${res.error}`,
-          variant: 'destructive',
-        });
-      }
-
+      await Signup(data.email, data.password, data.username);
       toast({
-        title: `${m.login()} ${m.successfully()}!`,
+        title: `${m.register()} ${m.successfully()}!`,
       });
-
       router.refresh();
-      router.push('/dashboard');
+      router.push('/login');
     } catch (error) {
-      toast({
+      return toast({
         title: `${m.error_auth_title()}`,
-        description: `${m.error_auth_description()}`,
+        description: `${m.error_register_description()}`,
         variant: 'destructive',
       });
     } finally {
@@ -70,6 +53,26 @@ const AuthForm = ({ className, ...props }: AuthFormProps) => {
     <div className={cn('grid gap-6', className)} {...props}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid gap-6">
+          <div className="grid gap-1.5">
+            <Label className="mb-1" htmlFor="email">
+              {m.username()}
+            </Label>
+            <Input
+              id="username"
+              placeholder={`${m.username()}`}
+              type="text"
+              autoCapitalize="none"
+              autoComplete="text"
+              autoCorrect="off"
+              disabled={isLoading}
+              {...register('username')}
+            />
+            {errors?.username && (
+              <p className="px-1 text-xs text-red-600">
+                {errors.username.message}
+              </p>
+            )}
+          </div>
           <div className="grid gap-1.5">
             <Label className="mb-1" htmlFor="email">
               Email
@@ -122,19 +125,19 @@ const AuthForm = ({ className, ...props }: AuthFormProps) => {
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin"></Icons.spinner>
             )}
-            {m.login()}
+            {m.register()}
           </button>
         </div>
       </form>
 
       <div className="w-full text-center font-medium py-2 text-[12px] ">
-        {m.get_started_with_genio()}. {}
-        <Link className="underline" href={'/register'}>
-          {m.register()}
+        {m.already_have_account()}?.{' '}
+        <Link className="underline" href={'/login'}>
+          {m.login()}
         </Link>
       </div>
     </div>
   );
 };
 
-export default AuthForm;
+export default RegisterForm;

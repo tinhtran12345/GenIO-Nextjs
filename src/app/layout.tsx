@@ -59,7 +59,7 @@ export default function RootLayout({
               <ThemeSwitcher />
               <LanguageSwitcher />
             </div>
-            <Footer />
+            {/* <Footer /> */}
           </ThemeProvider>
         </body>
       </html>
