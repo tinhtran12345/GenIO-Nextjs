@@ -55,7 +55,7 @@ export default function RootLayout({
             <Toaster />
 
             {children}
-            <div className="absolute bottom-5 right-5 z-10 flex items-center gap-2 flex-col">
+            <div className="fixed bottom-5 right-5 z-10 flex items-center gap-2 flex-col">
               <ThemeSwitcher />
               <LanguageSwitcher />
             </div>

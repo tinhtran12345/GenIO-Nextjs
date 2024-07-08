@@ -21,12 +21,24 @@ import {
   Inbox,
   Sun,
   Moon,
+  Image,
+  ImagePlus,
+  Scaling,
+  ImageMinus,
+  Settings,
+  PhoneCall,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export type Icon = LucideIcon;
 
 export const Icons = {
+  contact: PhoneCall,
+  setting: Settings,
+  remove: ImageMinus,
+  resize: Scaling,
+  generate: ImagePlus,
+  image: Image,
   sun: Sun,
   moon: Moon,
   logOut: LogOut,
