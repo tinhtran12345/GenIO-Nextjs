@@ -15,3 +15,11 @@ export const Signup = async (
   });
   return res;
 };
+
+export async function deleteExtraction(uuid: string) {
+  const res = await axios(`/api/delete/extraction?uuid=${uuid}`, {
+    method: 'DELETE',
+  });
+
+  return res;
+}
